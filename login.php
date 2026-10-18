@@ -1,10 +1,16 @@
 <?php
-session_start();
-if(isset($_COOKIE['dernier_login'])) $last=$_COOKIE['dernier_login']; else $last="";
-if($_SERVER['REQUEST_METHOD']=='POST'){
-  $_SESSION['login']=$_POST['login'];
-  setcookie("dernier_login", $_POST['login'], time()+86400, "/");
-  header("Location: profil.php"); exit;
+require "config.php";
+if(isset($_POST['login'])){
+  $_SESSION['user'] = $_POST['user'] ?? 'admin';
+  header("Location: ex03_tableau.php");
+  exit;
 }
+include "includes/entete_inc.php";
+include "includes/menu_inc.php";
 ?>
-<form method="POST"><input name="login" value="<?= htmlspecialchars($last) ?>"><button>Login</button></form>
+<h2>Login</h2>
+<form method="POST">
+  <input type="text" name="user" placeholder="Username" required>
+  <button type="submit" name="login">Login</button>
+</form>
+<?php include "includes/pied_inc.php"; ?>
