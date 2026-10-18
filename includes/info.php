@@ -1,0 +1,1 @@
+<?php $sexe=$_GET['sexe']; echo ($sexe=='M'?"Bonjour Monsieur":"Bonjour Madame")." ".htmlspecialchars($_GET['prenom']." ".$_GET['nom']); ?>
